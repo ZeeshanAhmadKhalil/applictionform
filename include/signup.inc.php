@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 require '../vendor/autoload.php';
 require 'credentials.php';
+echo "working";
 if (isset($_POST['signup_button'])) {
     require_once "dbController.php";
     $db_handle = new DBController();
@@ -20,24 +21,28 @@ if (isset($_POST['signup_button'])) {
                 $mail = new PHPMailer(true);
                 /* Open the try/catch block. */
                 try {
+                    echo "working1.";
+                    $mail->SMTPDebug = 1;
                     /* Set the mail sender. */
-                    $mail->setFrom('faizank575@gmail.com', 'Faizan Khan');
+                    require('mail.sender.php');
                     $mail->IsHTML(true);
-
+                    echo "working2";
                     /* Add a recipient. */
+                    echo "[$useremail]";
                     $mail->addAddress($useremail);
 
                     /* Set the subject. */
-                    $mail->Subject = 'Test Email';
+                    $mail->Subject = 'Application Submission';
+                    echo "working3";
 
-                    $actual_link = "http://$_SERVER[HTTP_HOST]/WebProject/include/" . "activation.php?username=" . $useremail;
+                    $actual_link = "http://$_SERVER[HTTP_HOST]/ApplicationSubmission_Project-master/include/" . "activation.php?username=" . $useremail;
 
                     /* Set the mail message body. */
                     $mail->Body = "Click this link to activate your account. <a href='" . $actual_link . "'>" . $actual_link . "</a>";
 
                     /* Tells PHPMailer to use SMTP. */
                     $mail->isSMTP();
-
+                    echo "working4";
                     /* SMTP server address. */
                     $mail->Host = 'smtp.gmail.com';
 
@@ -49,21 +54,31 @@ if (isset($_POST['signup_button'])) {
 
                     /* SMTP authentication username. */
                     $mail->Username = $email;
-
+                    echo "working5";
                     /* SMTP authentication password. */
                     $mail->Password = $password;
 
                     /* Set the SMTP port. */
                     $mail->Port = 587;
-
+                    echo "working6";
                     /* Finally send the mail. */
-                    $mail->send();
+                    
+                    echo "working7";
+                    if($mail->send()){
+                        echo "sended";
+                    } else {
+                        echo "not sended";
+                    }
                 } catch (Exception $e) {
                     /* PHPMailer exception. */
                     echo $e->errorMessage();
+                    echo "working8";
+                    
                 } catch (\Exception $e) {
                     /* PHP exception (note the backslash to select the global namespace Exception class). */
                     echo $e->getMessage();
+                    echo "working9";
+
                 }
                 unset($_POST);
                 header("Location:../Signin.php?activation=emailhasbeensent");
@@ -114,25 +129,28 @@ if (isset($_POST['signup_button'])) {
                 $mail = new PHPMailer(true);
                 /* Open the try/catch block. */
                 try {
-                    // echo "<script>alert('working')</script>";
+                    echo "working1.";
+                    $mail->SMTPDebug = 1;
                     /* Set the mail sender. */
-                    $mail->setFrom('faizank575@gmail.com', 'Faizan Khan');
+                    require('mail.sender.php');
                     $mail->IsHTML(true);
-
+                    echo "working2";
                     /* Add a recipient. */
+                    echo "[$useremail]";
                     $mail->addAddress($useremail);
 
                     /* Set the subject. */
-                    $mail->Subject = 'Test Email';
+                    $mail->Subject = 'Application Submission';
+                    echo "working3";
 
-                    $actual_link = "http://$_SERVER[HTTP_HOST]/WebProject/include/" . "activation.php?username=" . $useremail;
+                    $actual_link = "http://$_SERVER[HTTP_HOST]/ApplicationSubmission_Project-master/include/" . "activation.php?username=" . $useremail;
 
                     /* Set the mail message body. */
                     $mail->Body = "Click this link to activate your account. <a href='" . $actual_link . "'>" . $actual_link . "</a>";
 
                     /* Tells PHPMailer to use SMTP. */
                     $mail->isSMTP();
-
+                    echo "working4";
                     /* SMTP server address. */
                     $mail->Host = 'smtp.gmail.com';
 
@@ -144,21 +162,31 @@ if (isset($_POST['signup_button'])) {
 
                     /* SMTP authentication username. */
                     $mail->Username = $email;
-
+                    echo "working5";
                     /* SMTP authentication password. */
                     $mail->Password = $password;
 
                     /* Set the SMTP port. */
                     $mail->Port = 587;
-
+                    echo "working6";
                     /* Finally send the mail. */
-                    $mail->send();
+                    
+                    echo "working7";
+                    if($mail->send()){
+                        echo "sended";
+                    } else {
+                        echo "not sended";
+                    }
                 } catch (Exception $e) {
                     /* PHPMailer exception. */
                     echo $e->errorMessage();
+                    echo "working8";
+                    
                 } catch (\Exception $e) {
                     /* PHP exception (note the backslash to select the global namespace Exception class). */
                     echo $e->getMessage();
+                    echo "working9";
+
                 }
                 unset($_POST);
                 header("Location:../EmployeeSignin.php?activation=emailhasbeensent");

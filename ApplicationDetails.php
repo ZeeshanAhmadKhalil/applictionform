@@ -571,7 +571,7 @@ include_once 'include/dashboard.header.php';
             <span class="badge badge-primary badge-pill"><a class="btn btn-primary" role="button" href="#"
                     id="approver_accept">Approve</a></span>
             <span class="badge badge-primary badge-pill"><a class="btn btn-primary" role="button" href="#"
-                    id="approver_reject">Dis-approve</a></span>
+                    id="approver_reject" disabled=true>Dis-approve</a></span>
         </div>
     </div>
     <?php endif;?>
