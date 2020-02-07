@@ -96,33 +96,33 @@ if (isset($_POST['signup_button'])) {
         if ($count == 0) {
             $name=$_POST['name'];
             $type=$_POST['userType'];   
-            if($type=='reviewer'){
-                // SELECT fields FROM table ORDER BY id DESC LIMIT 1
-                $previous_reviewer_number="SELECT * from employees WHERE type LIKE '%reviewer%' ORDER BY Emp_id DESC LIMIT 1";
-                $count=$db_handle->numRows($previous_reviewer_number);
-                // echo "<script>alert('$count')</script>";
-                echo "<script>console.log($count)</script>";
-                if($count==0){
-                    $previous_reviewer_number=1;
-                } else{
-                    $result=$db_handle->runQuery($previous_reviewer_number);
-                    $type_=$result[0]['type'];
-                    preg_match_all('!\d+!', $type_, $matches);
-                    $number=$matches[0];
-                    if($number[0]==3){
-                        $new_number=1;
-                        // echo "<script>alert('if')</script>";
-                echo "<script>console.log(if)</script>";
-                    } else{
-                        $new_number=intval($number[0])+1;
-                        // echo "<script>alert('$type_')</script>";
-                        // echo "<script>alert('$number[0]')</script>";
-                        // echo "<script>alert('$new_number')</script>";
-                echo "<script>console.log(else)</script>";
-                    }
-                }
-                $type=$type.$new_number;
-            }         
+            // if($type=='reviewer'){
+            //     // SELECT fields FROM table ORDER BY id DESC LIMIT 1
+            //     $previous_reviewer_number="SELECT * from employees WHERE type LIKE '%reviewer%' ORDER BY Emp_id DESC LIMIT 1";
+            //     $count=$db_handle->numRows($previous_reviewer_number);
+            //     // echo "<script>alert('$count')</script>";
+            //     echo "<script>console.log($count)</script>";
+            //     if($count==0){
+            //         $previous_reviewer_number=1;
+            //     } else{
+            //         $result=$db_handle->runQuery($previous_reviewer_number);
+            //         $type_=$result[0]['type'];
+            //         preg_match_all('!\d+!', $type_, $matches);
+            //         $number=$matches[0];
+            //         if($number[0]==3){
+            //             $new_number=1;
+            //             // echo "<script>alert('if')</script>";
+            //     echo "<script>console.log(if)</script>";
+            //         } else{
+            //             $new_number=intval($number[0])+1;
+            //             // echo "<script>alert('$type_')</script>";
+            //             // echo "<script>alert('$number[0]')</script>";
+            //             // echo "<script>alert('$new_number')</script>";
+            //     echo "<script>console.log(else)</script>";
+            //         }
+            //     }
+            //     $type=$type.$new_number;
+            // }         
             $anotherquery = "INSERT INTO employees (Emp_email,Emp_password,type,name) VALUES('$useremail','$userpassword','$type','$name')";
             $current_id = $db_handle->insertQuery($anotherquery);
             if ($current_id == "success") {

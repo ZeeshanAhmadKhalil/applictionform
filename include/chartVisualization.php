@@ -32,7 +32,7 @@ if ($type == 'reciever') {
     $query = "SELECT * FROM applicationsubmitted WHERE status!='rejected' and status!='submitted' and status!='InProgress'";
     $count = $db_handle->numRows($query);
     echo "$count,";
-    $query = "SELECT * FROM applicationsubmitted WHERE status!='rejected' and ApplicationType='$application_type' and status!='submitted' and status!='InProgress' and comment NOT LIKE '%$name%'";
+    $query = "SELECT * FROM applicationsubmitted WHERE  ApplicationType='$application_type' and status='recieved' and comment NOT LIKE '%$name accepted%' and comment NOT LIKE '%$name rejected%'";
     $count = $db_handle->numRows($query);
     echo "$count,";
     $query = "SELECT * FROM applicationsubmitted WHERE status!='rejected' and ApplicationType='$application_type' and status!='submitted' and status!='InProgress' and comment LIKE '%$name accepted%'";

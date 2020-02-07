@@ -49,7 +49,9 @@ $db_handle = new DBController();
                             $query="SELECT * FROM employees where type='reviewer'";
                             $count=$db_handle->numRows($query);
                             // if($count==0){
-                                echo "<option value='reviewer'>Reviewer</option>";
+                                echo "<option value='reviewer1'>Reviewer Type 1</option>";
+                                echo "<option value='reviewer2'>Reviewer Type 2</option>";
+                                echo "<option value='reviewer3'>Reviewer Type 3</option>";
                             // }
                             $query="SELECT * FROM employees where type='approver'";
                             $count=$db_handle->numRows($query);

@@ -46,6 +46,7 @@ $(document).ready(function(){
         })
     })
     $('#reviewer_accept').click(function(){
+        // alert("here")
         comment=document.getElementById("comment_textarea").value
         data=data+"&comment="+comment
         request=$.ajax({

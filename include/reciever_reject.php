@@ -81,20 +81,29 @@
         $application_id=$_POST['applicationID'];
         $comment=$_POST['comment'];
         $username=$_SESSION['username'];
-        $reviewers="SELECT Name FROM employees WHERE Emp_email='$username'";
+        $reviewers="SELECT Name,type FROM employees WHERE Emp_email='$username'";
         $result=$db_handle->runQuery($reviewers);
         $name=$result[0]['Name'];
+        $exact_type=$result[0]['type'];
         $check="SELECT comment FROM applicationsubmitted WHERE applicationID='$application_id'";
         $result=$db_handle->runQuery($check);
         $comment_=$result[0]['comment'];
         $count= substr_count($comment_, ',_.');
-        if($count==2){
-            $review_appication="UPDATE applicationsubmitted SET status='reviewed' WHERE applicationID='$application_id'";
+
+        $count_reviewers="SELECT * FROM employees WHERE type='$exact_type'";
+        $count_reviewers=$db_handle->numRows($count_reviewers);
+        $a=$count_reviewers-1;
+        echo "$a \n";
+        echo "$count";
+        $comment=$comment_.$name." rejected:".$comment.",_.";
+        if($count==$a){
+            // echo "here";
+            $review_appication="UPDATE applicationsubmitted SET comment='$comment',status='reviewed' WHERE applicationID='$application_id'";
+            $db_handle->runQuery($review_appication);
+        } else {
+            $review_appication="UPDATE applicationsubmitted SET comment='$comment' WHERE applicationID='$application_id'";
             $db_handle->runQuery($review_appication);
         }
-        $comment=$comment_.$name." rejected:".$comment.",_.";
-        $review_appication="UPDATE applicationsubmitted SET comment='$comment' WHERE applicationID='$application_id'";
-        $db_handle->runQuery($review_appication);
     } elseif($_SESSION['type']=='approver'){
         $application_id=$_POST['applicationID'];
         $change_status="UPDATE applicationsubmitted SET status='disapproved' WHERE applicationID='$application_id'";

@@ -35,7 +35,10 @@ if (isset($_SESSION['type'])) {
             $application = '';
             foreach ($result as $ApplicationData) {
                 $comment=$ApplicationData['comment'];
-                $already_reviewed=strpos($comment,$name);
+                $name_to_check=$name." ";
+                echo "<script>console.log('$name_to_check')</script>";
+                echo "<script>console.log('$comment')</script>";
+                $already_reviewed=strpos($comment,$name_to_check);
                 // echo "<script>alert('$comment')</script>";
                 // echo "<script>alert('$already_reviewed')</script>";
                 if($already_reviewed===false){
