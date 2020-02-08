@@ -31,12 +31,10 @@ $db_handle = new DBController();
                     <table cellpadding='0' cellspacing='0' border='0'>
                         <thead>
                             <tr>
-                                <th >Application ID</th>
-                                <th >Application Type</th>
-                                <th >Application Status</th>
-                                <th >Employee Name</th>
-                                <th >Employee Decision</th>
-                                <th colspan='2'>Employee Comment</th>
+                                <th >ID</th>
+                                <th >Type</th>
+                                <th >Status</th>
+                                <th colspan='2'>Comment</th>
                             </tr>
                         </thead>
                     </table>
@@ -51,46 +49,44 @@ $db_handle = new DBController();
                             $application_Type=$row['ApplicationType'];
                             $status=$row['status'];
                             $comment=$row['comment'];
-                            if($row['status']=='rejected'){
-                                $reciever_name="SELECT Name FROM employees WHERE type='reciever'";
-                                $reciever_name_result=$db_handle->runQuery($reciever_name);
-                                $reciever_name=$reciever_name_result[0]['Name'];
+                            // if($row['status']=='rejected'){
+                                // $reciever_name="SELECT Name FROM employees WHERE type='reciever'";
+                                // $reciever_name_result=$db_handle->runQuery($reciever_name);
+                                // $reciever_name=$reciever_name_result[0]['Name'];
                                 echo "
                                 <tr>
                                     <th >$application_ID</th>
                                     <th >$application_Type</th>
                                     <th >$status</th>
-                                    <th >$reciever_name</th>
-                                    <th >Rejected</th>
                                     <th colspan='2'>$comment</th>
                                 </tr>
                                 ";
-                            }
-                            else{
-                                $comments = explode(',_.', $comment);
-                                foreach($comments as $comment_){
-                                    if($comment_!=''){
-                                        $comment_=explode(':', $comment_, 2);
-                                        // echo "<script>alert('$comment_[1]')</script>";
-                                        $name_decision=$comment_[0];
-                                        $comment_=$comment_[1];
-                                        $name_decision=explode(' ',$name_decision,2);
-                                        $name=$name_decision[0];
-                                        $decision=$name_decision[1];
-                                        echo "
-                                            <tr>
-                                                <th >$application_ID</th>
-                                                <th >$application_Type</th>
-                                                <th >$status</th>
-                                                <th >$name</th>
-                                                <th >$decision</th>
-                                                <th colspan='2'>$comment_</th>
-                                            </tr>
-                                        ";
-                                    }
-                                }
-                                // echo "<script>alert('one other')</script>";
-                            }
+                            // }
+                            // else{
+                            //     $comments = explode(',_.', $comment);
+                            //     foreach($comments as $comment_){
+                            //         if($comment_!=''){
+                            //             $comment_=explode(':', $comment_, 2);
+                            //             // echo "<script>alert('$comment_[1]')</script>";
+                            //             $name_decision=$comment_[0];
+                            //             $comment_=$comment_[1];
+                            //             $name_decision=explode(' ',$name_decision,2);
+                            //             $name=$name_decision[0];
+                            //             $decision=$name_decision[1];
+                            //             echo "
+                            //                 <tr>
+                            //                     <th >$application_ID</th>
+                            //                     <th >$application_Type</th>
+                            //                     <th >$status</th>
+                            //                     <th >$name</th>
+                            //                     <th >$decision</th>
+                            //                     <th colspan='2'>$comment_</th>
+                            //                 </tr>
+                            //             ";
+                            //         }
+                            //     }
+                            //     // echo "<script>alert('one other')</script>";
+                            // }
                         }
                     }
                     echo "

@@ -567,11 +567,14 @@ include_once 'include/dashboard.header.php';
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Your Decision</h6>
         </div>
+        <div id="accept_reject_comment">
+        <textarea name="comment" id="comment_textarea" rows="4" placeholder="enter comment here"></textarea>
         <div id="accept_reject">
             <span class="badge badge-primary badge-pill"><a class="btn btn-primary" role="button" href="#"
                     id="approver_accept">Approve</a></span>
             <span class="badge badge-primary badge-pill"><a class="btn btn-primary" role="button" href="#"
                     id="approver_reject" disabled=true>Dis-approve</a></span>
+        </div>
         </div>
     </div>
     <?php endif;?>

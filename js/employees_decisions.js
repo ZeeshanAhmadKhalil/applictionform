@@ -21,7 +21,7 @@ $(document).ready(function(){
     })
     $('#reciever_reject').click(function(e){
         e.preventDefault()
-        alert("working")
+        // alert("working")
         accept_reject_comment=document.getElementById('accept_reject_comment')
         accept_reject_comment.innerHTML="<textarea name='comment' id='comment_textarea' rows='4' placeholder='Enter Comment Here'></textarea>\
         <div id='accept_reject'>\
@@ -75,6 +75,8 @@ $(document).ready(function(){
         })
     })
     $('#approver_accept').click(function(e){
+        comment=document.getElementById("comment_textarea").value
+        data=data+"&comment="+comment
         e.preventDefault()
         $(this).html('Wait...');
         request=$.ajax({
@@ -88,6 +90,8 @@ $(document).ready(function(){
         })
     })
     $('#approver_reject').click(function(e){
+        comment=document.getElementById("comment_textarea").value
+        data=data+"&comment="+comment
         e.preventDefault()
         $(this).html('Wait...');
         $('#approver_reject,#approver_reject').prop('disabled',true)

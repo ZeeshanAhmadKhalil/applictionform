@@ -40,7 +40,8 @@
         }
     } elseif($_SESSION['type']=='approver'){
         $application_id=$_POST['applicationID'];
-        $change_status="UPDATE applicationsubmitted SET status='approved' WHERE applicationID='$application_id'";
+        $comment=$_POST['comment'];
+        $change_status="UPDATE applicationsubmitted SET status='approved',comment='$comment' WHERE applicationID='$application_id'";
         $db_handle->runQuery($change_status);
         $query="SELECT useremail FROM applicationsubmitted WHERE applicationID='$application_id'";
         $result=$db_handle->runQuery($query);
